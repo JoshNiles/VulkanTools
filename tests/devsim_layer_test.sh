@@ -1,7 +1,6 @@
-#! /bin/bash
-# Simple test of devsim layer
-# Uses 'jq' v1.5 (https://stedolan.github.io/jq/) to extract sections of
-# test's JSON output and reformat for consistent comparison with gold file.
+#! /bin/bash -x
+# Various tests of LunarG Device Simulation (devsim) layer
+# Uses 'jq' v1.5 https://stedolan.github.io/jq/
 
 set errexit
 set nounset
@@ -25,7 +24,7 @@ export LD_LIBRARY_PATH=${PWD}/../submodules/Vulkan-LoaderAndValidationLayers/loa
 export VK_LAYER_PATH=${PWD}/../layersvt
 export VK_INSTANCE_LAYERS="VK_LAYER_LUNARG_device_simulation"
 
-#export VK_DEVSIM_DEBUG_ENABLE="1"
+export VK_DEVSIM_DEBUG_ENABLE="1"
 #export VK_DEVSIM_EXIT_ON_ERROR="1"
 #export VK_LOADER_DEBUG="all"
 
@@ -51,6 +50,7 @@ rm ${FILENAME_01_RESULT}
 rm ${FILENAME_01_STDOUT}
 
 #############################################################################
+cat ${FILENAME_01_STDOUT}
 
 if [ "$RES" -eq 0 ] ; then
    printf "$GREEN[  PASSED  ]$NC ${PGM}\n"
